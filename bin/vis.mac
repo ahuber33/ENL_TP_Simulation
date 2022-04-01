@@ -44,19 +44,19 @@
 ######################################################
 ### PART TO SIMULATE PARTICLE WITH GPS (no setgun) ###
 ######################################################
-/gps/number 100
+/gps/number 1
 
 
 # PART TO SIMULATE 1 MEV ELECTRON !!!!!!!!
-/gps/particle proton
-#/gps/particle geantino
+#/gps/particle e-
+/gps/particle geantino
 /gps/pos/type Point
-/gps/pos/centre 0.0 0.0 -300. mm
-/gps/energy 1000.0 keV
-#/gps/direction 0.0 0.0 1.0
-/gps/ang/type cos
-/gps/ang/rot1 -1 0 0
-/gps/ang/maxtheta 0.0008 rad
+/gps/pos/centre -20.0 0.0 -300. mm
+/gps/energy 100.0 MeV
+/gps/direction 0.0 0.0 1.0
+#/gps/ang/type cos
+#/gps/ang/rot1 -1 0 0
+#/gps/ang/maxtheta 0.0008 rad
 
 #/gps/ene/type Arb
 #/gps/hist/type arb
@@ -65,39 +65,5 @@
 
 #/gps/particle ion
 #/gps/ion 2 4 2
-#/grdm/nucleusLimits 60 60 27 27
-
-
-
-# #/gps/pos/centre 20 15. -0.0 mm
-#/gps/pos/centre 0.0 -1104 0.0 mm
-#/gps/pos/centre 0. -289.778 -77.646 mm
-#/gps/pos/centre 0.0 -7.7645714 -28.97777479 cm
-# /gps/particle ion
-# /gps/ion 55 137 0 0  
-# /grdm/nucleusLimits 137 137 55 55
-# /gps/ang/type cos
-# /gps/ang/rot1 -1 0 0
-
-
-
-# /gps/pos/type Volume
-# /gps/pos/shape Cylinder
-# #/gps/pos/centre -9.25 0. 0. mm
-# #/gps/pos/centre -5.24 40. -20. mm
-# /gps/pos/centre -5.25 40. -20. mm
-# /gps/pos/radius 22 mm
-# /gps/pos/halfz 0.0005 mm
-# # /gps/particle ion
-# # /gps/ion 27 60 0 0  
-# # /grdm/nucleusLimits 60 60 27 27
-# /gps/particle geantino
-# /gps/energy 0.6 MeV
-# /gps/direction 1.0 0.0 0.0
-# /gps/pos/rot1 0 0 1 
-# /gps/pos/rot2 0 1 0
-# /gps/ang/rot1 0 0 1	
-# /gps/ang/rot2 0 1 0	
-# #/gps/ang/type iso
 
 /run/beamOn 1

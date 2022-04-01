@@ -1,8 +1,8 @@
-/// TPSimPhysics.cc
+/// ENLTPSimPhysics.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimPhysics.hh"
+#include "ENLTPSimPhysics.hh"
 //#include "G4MuNuclearInteraction.hh"
 #include "G4KokoulinMuonNuclearXS.hh"
 #include "globals.hh"
@@ -57,7 +57,7 @@ using namespace CLHEP;
 
 // Taken from N06 and LXe examples in GEANT4
 
-TPSimPhysics::TPSimPhysics():  G4VModularPhysicsList()
+ENLTPSimPhysics::ENLTPSimPhysics():  G4VModularPhysicsList()
 {
   // Here used the default cut value you have typed in
   //defaultCutValue = 0.001*mm; //0.001
@@ -79,12 +79,12 @@ TPSimPhysics::TPSimPhysics():  G4VModularPhysicsList()
 
 }
 
-TPSimPhysics::~TPSimPhysics(){
+ENLTPSimPhysics::~ENLTPSimPhysics(){
   delete raddecayList;
   delete emPhysicsList;
 }
 
-void TPSimPhysics::ConstructParticle()
+void ENLTPSimPhysics::ConstructParticle()
 {
   // Here are constructed all particles you have chosen
   particleList->ConstructParticle();
@@ -95,7 +95,7 @@ void TPSimPhysics::ConstructParticle()
 }
 
 
-void TPSimPhysics::ConstructProcess()
+void ENLTPSimPhysics::ConstructProcess()
 {
   // Transportation, electromagnetic and general processes
 
@@ -111,7 +111,7 @@ void TPSimPhysics::ConstructProcess()
 
 }
 
-void TPSimPhysics::AddIonGasModels()
+void ENLTPSimPhysics::AddIonGasModels()
 {
   G4EmConfigurator* em_config =
   G4LossTableManager::Instance()->EmConfigurator();
@@ -141,7 +141,7 @@ void TPSimPhysics::AddIonGasModels()
 }
 
 
-void TPSimPhysics::ConstructOp()
+void ENLTPSimPhysics::ConstructOp()
 {
   G4Cerenkov *theCerenkovProcess = new G4Cerenkov("Cerenkov");
   G4Scintillation *theScintillationProcess = new G4Scintillation("Scintillation");
@@ -192,11 +192,11 @@ void TPSimPhysics::ConstructOp()
     G4ProcessManager* pmanager = particle->GetProcessManager();
     G4String particleName = particle->GetParticleName();
 
-    if (theCerenkovProcess->IsApplicable(*particle))
-      {
-    	pmanager->AddProcess(theCerenkovProcess);
-    	pmanager->SetProcessOrdering(theCerenkovProcess, idxPostStep);
-      }
+    // if (theCerenkovProcess->IsApplicable(*particle))
+    //   {
+    // 	pmanager->AddProcess(theCerenkovProcess);
+    // 	pmanager->SetProcessOrdering(theCerenkovProcess, idxPostStep);
+    //   }
 
     if(particle->GetParticleName() == "e-")
     {
@@ -216,7 +216,7 @@ void TPSimPhysics::ConstructOp()
   }
 }
 
-void TPSimPhysics::SetCuts()
+void ENLTPSimPhysics::SetCuts()
 {
   // defaultCutValue you have typed in is used
 

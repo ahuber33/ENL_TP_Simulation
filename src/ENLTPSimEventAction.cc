@@ -1,13 +1,13 @@
-/// TPSimEventAction.cc
+/// ENLTPSimEventAction.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 /// Copyright: 2017 (C) Projet BADGE - CARMELEC -P2R
 
 #include "G4SteppingManager.hh"
-#include "TPSimSteppingAction.hh"
+#include "ENLTPSimSteppingAction.hh"
 #include "G4Run.hh"
-#include "TPSimEventAction.hh"
+#include "ENLTPSimEventAction.hh"
 #include "G4RunManager.hh"
-#include "TPSimRunAction.hh"
+#include "ENLTPSimRunAction.hh"
 #include "G4Event.hh"
 #include "G4EventManager.hh"
 #include "G4TrajectoryContainer.hh"
@@ -23,14 +23,14 @@
 
 using namespace CLHEP;
 
-TPSimEventAction::TPSimEventAction(char* suff):suffixe(suff){}
+ENLTPSimEventAction::ENLTPSimEventAction(char* suff):suffixe(suff){}
 
-TPSimEventAction::~TPSimEventAction(){}
+ENLTPSimEventAction::~ENLTPSimEventAction(){}
 
 
 // Initialize all counters and set up the event branches for
 // filling histograms with ROOT
-void TPSimEventAction::BeginOfEventAction(const G4Event* evt){
+void ENLTPSimEventAction::BeginOfEventAction(const G4Event* evt){
 
   StatsOptical.IncidentE = 0;
   StatsOptical.DepositZnS = 0;
@@ -75,10 +75,10 @@ void TPSimEventAction::BeginOfEventAction(const G4Event* evt){
 
 
 // Get the number of stored trajectories and calculate the statistics
-void TPSimEventAction::EndOfEventAction(const G4Event* evt){
+void ENLTPSimEventAction::EndOfEventAction(const G4Event* evt){
   //G4int event_id = evt->GetEventID();
 
-  TPSimRunAction *runac = (TPSimRunAction*)(G4RunManager::GetRunManager()->GetUserRunAction());
+  ENLTPSimRunAction *runac = (ENLTPSimRunAction*)(G4RunManager::GetRunManager()->GetUserRunAction());
 
   G4double Absfrac = 0;
   G4double BulkfracZnS = 0;

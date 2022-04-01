@@ -1,8 +1,8 @@
-/// TPSimMaterials.cc
+/// ENLTPSimMaterials.cc
 /// Auteur: Arnaud HUBER <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimMaterials.hh"
+#include "ENLTPSimMaterials.hh"
 #include "G4Element.hh"
 #include "G4Material.hh"
 #include "G4MaterialTable.hh"
@@ -18,7 +18,7 @@
 
 using namespace CLHEP;
 
-const G4String TPSimMaterials::path = "../simulation_input_files/";
+const G4String ENLTPSimMaterials::path = "../simulation_input_files/";
 
 // Used to set up all material properties.  Some materials
 // are left over from previous simulations and may not be
@@ -26,7 +26,7 @@ const G4String TPSimMaterials::path = "../simulation_input_files/";
 // is poorly done.  Can improve using vectors.  Careful of
 // memory leaks.  Careful of files and how they are read in.
 
-TPSimMaterials::TPSimMaterials(G4String prop_buildfile):bs_glass(0),
+ENLTPSimMaterials::ENLTPSimMaterials(G4String prop_buildfile):bs_glass(0),
 polysty(0),
 Ti02(0),
 coating(0),
@@ -108,7 +108,7 @@ PMMA(0)
 
 }
 
-TPSimMaterials::~TPSimMaterials()
+ENLTPSimMaterials::~ENLTPSimMaterials()
 {
 	if(scintillator) { delete scintillator; scintillator = 0; }
 	if (Vacuum){ delete Vacuum; Vacuum = 0; }
@@ -123,7 +123,7 @@ TPSimMaterials::~TPSimMaterials()
 }
 
 
-void TPSimMaterials::Construct()
+void ENLTPSimMaterials::Construct()
 {
 
 	G4double R = 8.3144621; //(en J/K/mole => Constante gaz parfait)
@@ -1016,7 +1016,7 @@ void TPSimMaterials::Construct()
 
 }
 
-G4Material* TPSimMaterials::GetMaterial(G4String material)
+G4Material* ENLTPSimMaterials::GetMaterial(G4String material)
 {
 	G4Material* pttoMaterial = G4Material::GetMaterial(material);
 	return pttoMaterial;

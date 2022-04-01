@@ -1,8 +1,8 @@
-/// TPSimRunAction.cc
+/// ENLTPSimRunAction.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimRunAction.hh"
+#include "ENLTPSimRunAction.hh"
 #include "Randomize.hh"
 #include <time.h>
 #include "G4Run.hh"
@@ -18,15 +18,15 @@
 #include <fstream>
 #include <iostream>
 
-TPSimRunAction::TPSimRunAction(char* suff):suffixe(suff){}
-TPSimRunAction::~TPSimRunAction(){}
+ENLTPSimRunAction::ENLTPSimRunAction(char* suff):suffixe(suff){}
+ENLTPSimRunAction::~ENLTPSimRunAction(){}
 
 
 //-----------------------------------------------------
 //  BeginOfRunAction:  used to calculate the start time and
 //  to set up information in the run tree.
 //-----------------------------------------------------
-void TPSimRunAction::BeginOfRunAction(const G4Run* aRun){
+void ENLTPSimRunAction::BeginOfRunAction(const G4Run* aRun){
 
   G4String fileName = suffixe+".root";
 
@@ -101,7 +101,7 @@ void TPSimRunAction::BeginOfRunAction(const G4Run* aRun){
 //  EndOfRunAction:  used to calculate the end time and
 //  to write information to the run tree.
 //-----------------------------------------------------
-void TPSimRunAction::EndOfRunAction(const G4Run*aRun){
+void ENLTPSimRunAction::EndOfRunAction(const G4Run*aRun){
 
   //update the temp root file
   G4String fileName = suffixe+".root";
@@ -137,12 +137,12 @@ void TPSimRunAction::EndOfRunAction(const G4Run*aRun){
 //  For each event update the statistics in the Run tree
 //---------------------------------------------------------
 
-void TPSimRunAction::UpdateStatisticsOptical(RunTallyOptical aRunTallyOptical){
+void ENLTPSimRunAction::UpdateStatisticsOptical(RunTallyOptical aRunTallyOptical){
   StatsOptical = aRunTallyOptical;
   Tree_Optical->Fill();
 }
 
-void TPSimRunAction::UpdateStatisticsTP(RunTallyTP aRunTallyTP){
+void ENLTPSimRunAction::UpdateStatisticsTP(RunTallyTP aRunTallyTP){
   StatsTP = aRunTallyTP;
   Tree_TP->Fill();
 }

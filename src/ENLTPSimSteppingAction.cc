@@ -1,8 +1,8 @@
-/// TPSimSteppingAction.cc
+/// ENLTPSimSteppingAction.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimSteppingAction.hh"
+#include "ENLTPSimSteppingAction.hh"
 #include "G4DynamicParticle.hh"
 #include "G4OpBoundaryProcess.hh"
 #include "G4Step.hh"
@@ -11,16 +11,16 @@
 #include "G4Track.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4OpticalPhoton.hh"
-#include "TPSimRunAction.hh"
+#include "ENLTPSimRunAction.hh"
 #include "G4RunManager.hh"
 #include "G4EventManager.hh"
-#include "TPSimEventAction.hh"
+#include "ENLTPSimEventAction.hh"
 #include <iostream>
 #include <fstream>
 #include "G4Material.hh"
 #include "G4Trajectory.hh"
-#include "TPSimTrackInformation.hh"
-#include "TPSimGeometry.hh"
+#include "ENLTPSimTrackInformation.hh"
+#include "ENLTPSimGeometry.hh"
 #include "G4StepPoint.hh"
 #include "TRandom3.h"
 #include "TF1.h"
@@ -37,26 +37,26 @@
 
 using namespace CLHEP;
 
-const G4String TPSimSteppingAction::path = "../simulation_input_files/";
+const G4String ENLTPSimSteppingAction::path = "../simulation_input_files/";
 
-TPSimSteppingAction::TPSimSteppingAction()
+ENLTPSimSteppingAction::ENLTPSimSteppingAction()
 {}
 
-  TPSimSteppingAction::~TPSimSteppingAction(){}
-  void TPSimSteppingAction::UserSteppingAction(const G4Step *aStep){
+  ENLTPSimSteppingAction::~ENLTPSimSteppingAction(){}
+  void ENLTPSimSteppingAction::UserSteppingAction(const G4Step *aStep){
 
 
     //###################################
     // Déclaration of functions/variables
     //###################################
     G4Track* theTrack = aStep->GetTrack();
-    TPSimTrackInformation *trackInformation = (TPSimTrackInformation*)theTrack->GetUserInformation();
+    ENLTPSimTrackInformation *trackInformation = (ENLTPSimTrackInformation*)theTrack->GetUserInformation();
     G4String partname = aStep->GetTrack()->GetDefinition()->GetParticleName();
     G4int partID = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
-    TPSimRunAction *runac = (TPSimRunAction*)(G4RunManager::GetRunManager()->GetUserRunAction());
+    ENLTPSimRunAction *runac = (ENLTPSimRunAction*)(G4RunManager::GetRunManager()->GetUserRunAction());
     G4EventManager *evtman = G4EventManager::GetEventManager();
-    TPSimEventAction *evtac = (TPSimEventAction*)evtman->GetUserEventAction();
-    TPSimTrackInformation* info = (TPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation());
+    ENLTPSimEventAction *evtac = (ENLTPSimEventAction*)evtman->GetUserEventAction();
+    ENLTPSimTrackInformation* info = (ENLTPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation());
     G4String endproc = aStep->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName();
     G4int Parent_ID = aStep->GetTrack()->GetParentID();
     G4int StepNo = aStep->GetTrack()->GetCurrentStepNumber();
@@ -124,7 +124,7 @@ TPSimSteppingAction::TPSimSteppingAction()
 
       if(endproc == "OpRayleigh")
       {
-        ((TPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->CountRayleighScattering();
+        ((ENLTPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->CountRayleighScattering();
         //G4cout << "Rayleigh scattering" << G4endl;
         //G4cout << "Number of scattering = " << ((ENLOpticalSimTrackInformation*) (aStep->GetTrack()->GetUserInformation()))->GetRayleigh() << G4endl;
       }
@@ -174,9 +174,9 @@ if(aStep->GetPostStepPoint()->GetStepStatus()==fGeomBoundary){
       evtac->FillBirthLambda(info->GetBirthLambda());
       evtac->FillPhotonTime(aStep->GetPostStepPoint()->GetGlobalTime()/ns);
       evtac->FillEnergype(aStep->GetTotalEnergyDeposit()/eV);
-      evtac->FillRayleigh(((TPSimTrackInformation*) (aStep->GetTrack()->GetUserInformation()))->GetRayleigh());
-      evtac->FillTotalReflections(((TPSimTrackInformation*) (aStep->GetTrack()->GetUserInformation()))->GetTotalInternalReflections());
-      evtac->FillWrapReflecions(((TPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->GetReflections());
+      evtac->FillRayleigh(((ENLTPSimTrackInformation*) (aStep->GetTrack()->GetUserInformation()))->GetRayleigh());
+      evtac->FillTotalReflections(((ENLTPSimTrackInformation*) (aStep->GetTrack()->GetUserInformation()))->GetTotalInternalReflections());
+      evtac->FillWrapReflecions(((ENLTPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->GetReflections());
       evtac->FillPhotonTotalLength(aStep->GetTrack()->GetTrackLength()/mm);
       //G4cout << "Photon detecté" << G4endl;
       //G4cout << "N detecté = " << evtac->GetDetected() << G4endl;
@@ -214,12 +214,12 @@ if(aStep->GetPostStepPoint()->GetStepStatus()==fGeomBoundary){
       case LobeReflection:
       case SpikeReflection:
       {
-        ((TPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->CountReflections();
+        ((ENLTPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->CountReflections();
         //G4cout << "Reflection" << G4endl;
         break;}
         case TotalInternalReflection:
         {
-          ((TPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->CountTotalInternalReflections();
+          ((ENLTPSimTrackInformation*)(aStep->GetTrack()->GetUserInformation()))->CountTotalInternalReflections();
           //G4cout << "Reflection totale" << G4endl;
           break;
         }
@@ -291,7 +291,7 @@ if (((aStep->GetPreStepPoint()->GetPhysicalVolume()->GetName() == "Scintillator"
 }
 
 //Be careful here !!! If Zns in here, put ZnS. If not, put Scintillator !!!!
-if(Parent_ID ==0 && aStep->GetPostStepPoint()->GetPhysicalVolume()->GetName() == "ZnS" && evtac->GetTPPositionZ()==0)
+if(Parent_ID ==0 && aStep->GetPostStepPoint()->GetPhysicalVolume()->GetName() == "Scintillator" && evtac->GetTPPositionZ()==0)
 {
   evtac->SetTPPositionX(x);
   evtac->SetTPPositionY(y);

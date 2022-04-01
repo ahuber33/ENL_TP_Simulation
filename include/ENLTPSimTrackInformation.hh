@@ -1,11 +1,11 @@
-/// TPSimTrackInformation.hh
+/// ENLTPSimTrackInformation.hh
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
 //This class stores the statistics for each photon
 
-#ifndef TPSimTrackInformation_h
-#define TPSimTrackInformation_h 1
+#ifndef ENLTPSimTrackInformation_h
+#define ENLTPSimTrackInformation_h 1
 
 #include "globals.hh"
 #include "G4ThreeVector.hh"
@@ -14,12 +14,12 @@
 #include "G4VUserTrackInformation.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
 
-class TPSimTrackInformation : public G4VUserTrackInformation
+class ENLTPSimTrackInformation : public G4VUserTrackInformation
 {
 public:
-  TPSimTrackInformation();
-  TPSimTrackInformation(const G4Track *aTrack);
-  ~TPSimTrackInformation();
+  ENLTPSimTrackInformation();
+  ENLTPSimTrackInformation(const G4Track *aTrack);
+  ~ENLTPSimTrackInformation();
 
   inline void *operator new(size_t);
   inline void operator delete(void *aTrackInfo);
@@ -68,15 +68,15 @@ public:
   void Print() const {;}
 };
 
-extern G4Allocator<TPSimTrackInformation> TrackInformationAllocator;
+extern G4Allocator<ENLTPSimTrackInformation> TrackInformationAllocator;
 
-inline void* TPSimTrackInformation::operator new(size_t)
+inline void* ENLTPSimTrackInformation::operator new(size_t)
 { void* aTrackInfo;
   aTrackInfo = (void*)TrackInformationAllocator.MallocSingle();
   return aTrackInfo;
 }
 
-inline void TPSimTrackInformation::operator delete(void *aTrackInfo)
-{ TrackInformationAllocator.FreeSingle((TPSimTrackInformation*)aTrackInfo);}
+inline void ENLTPSimTrackInformation::operator delete(void *aTrackInfo)
+{ TrackInformationAllocator.FreeSingle((ENLTPSimTrackInformation*)aTrackInfo);}
 
 #endif

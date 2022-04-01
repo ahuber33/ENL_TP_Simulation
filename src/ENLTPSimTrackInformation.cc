@@ -1,15 +1,15 @@
-/// TPSimTrackInformation.cc
+/// ENLTPSimTrackInformation.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimTrackInformation.hh"
+#include "ENLTPSimTrackInformation.hh"
 #include "G4VProcess.hh"
 
 using namespace CLHEP;
 
-G4Allocator<TPSimTrackInformation> TrackInformationAllocator;
-TPSimTrackInformation::TPSimTrackInformation(){}
-TPSimTrackInformation::TPSimTrackInformation(const G4Track *aTrack)
+G4Allocator<ENLTPSimTrackInformation> TrackInformationAllocator;
+ENLTPSimTrackInformation::ENLTPSimTrackInformation(){}
+ENLTPSimTrackInformation::ENLTPSimTrackInformation(const G4Track *aTrack)
 {
   //set new TrackInformation for each photon at scintillation
   if(!aTrack->GetUserInformation()){
@@ -26,7 +26,7 @@ TPSimTrackInformation::TPSimTrackInformation(const G4Track *aTrack)
   }
 
   else{
-    TPSimTrackInformation *anInfo = (TPSimTrackInformation*)(aTrack->GetUserInformation());
+    ENLTPSimTrackInformation *anInfo = (ENLTPSimTrackInformation*)(aTrack->GetUserInformation());
 
     BirthPosition = aTrack->GetVertexPosition();
 
@@ -47,7 +47,7 @@ TPSimTrackInformation::TPSimTrackInformation(const G4Track *aTrack)
   }
 }
 
-void TPSimTrackInformation::CountReflections(){
+void ENLTPSimTrackInformation::CountReflections(){
   Reflections++;
 
   if(WLSCount==0)
@@ -59,15 +59,15 @@ void TPSimTrackInformation::CountReflections(){
 
 }
 
-void TPSimTrackInformation::CountTotalInternalReflections(){
+void ENLTPSimTrackInformation::CountTotalInternalReflections(){
 
     TotalInternalReflections++;
 }
 
-void TPSimTrackInformation::CountRayleighScattering(){
+void ENLTPSimTrackInformation::CountRayleighScattering(){
 
     Rayleigh++;
 }
 
 
-TPSimTrackInformation::~TPSimTrackInformation(){}
+ENLTPSimTrackInformation::~ENLTPSimTrackInformation(){}

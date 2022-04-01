@@ -1,10 +1,10 @@
-/// TPSimVisManager.cc
-//// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr> 
+/// ENLTPSimVisManager.cc
+//// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
 #ifdef G4VIS_USE
 
-#include "TPSimVisManager.hh"
+#include "ENLTPSimVisManager.hh"
 
 // Supported drivers...uncomment the driver of your preference
 // Current default is VRML files
@@ -36,9 +36,9 @@
 //#include "G4VRML2File.hh"
 //#endif
 
-TPSimVisManager::TPSimVisManager () {}
+ENLTPSimVisManager::ENLTPSimVisManager () {}
 
-void TPSimVisManager::RegisterGraphicsSystems () {
+void ENLTPSimVisManager::RegisterGraphicsSystems () {
 
   //  RegisterGraphicsSystem (new G4HepRepFile);
   //  RegisterGraphicsSystem (new G4HepRep);
@@ -74,56 +74,8 @@ void TPSimVisManager::RegisterGraphicsSystems () {
       "\nYou have successfully chosen to use the following graphics systems."
 	 << G4endl;
     PrintAvailableGraphicsSystems ();
-    
+
   }
 }
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

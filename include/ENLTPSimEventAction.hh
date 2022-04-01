@@ -1,9 +1,9 @@
-/// TPSimEventAction.hh
+/// ENLTPSimEventAction.hh
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#ifndef TPSimEventAction_h
-#define TPSimEventAction_h 1
+#ifndef ENLTPSimEventAction_h
+#define ENLTPSimEventAction_h 1
 #include "G4ParticleGun.hh"
 #include "G4UserEventAction.hh"
 #include "TH1F.h"
@@ -71,11 +71,11 @@ struct RunTallyTP {
 };
 
 
-class TPSimEventAction : public G4UserEventAction
+class ENLTPSimEventAction : public G4UserEventAction
 {
 public:
-  TPSimEventAction(char*);
-  ~TPSimEventAction();
+  ENLTPSimEventAction(char*);
+  ~ENLTPSimEventAction();
 
 public:
   void BeginOfEventAction(const G4Event*);

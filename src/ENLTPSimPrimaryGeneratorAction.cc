@@ -1,16 +1,16 @@
-/// TPSimPrimaryGeneratorAction.cc
+/// ENLTPSimPrimaryGeneratorAction.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimPrimaryGeneratorAction.hh"
-#include "TPSimEventAction.hh"
+#include "ENLTPSimPrimaryGeneratorAction.hh"
+#include "ENLTPSimEventAction.hh"
 #include "G4EventManager.hh"
 #include "G4Event.hh"
 #include "G4ParticleGun.hh"
 #include "G4UImanager.hh"
 #include "globals.hh"
 #include "G4EventManager.hh"
-#include "TPSimEventAction.hh"
+#include "ENLTPSimEventAction.hh"
 
 
 // The commented out commands are to use this module with a G4ParticleGun
@@ -21,7 +21,7 @@
 
 
 G4UImanager* UI = G4UImanager::GetUIpointer();
-TPSimPrimaryGeneratorAction::TPSimPrimaryGeneratorAction(){
+ENLTPSimPrimaryGeneratorAction::ENLTPSimPrimaryGeneratorAction(){
   //G4int n_particle = 1;
 
   //particleGun = new G4ParticleGun(n_particle);
@@ -32,19 +32,19 @@ TPSimPrimaryGeneratorAction::TPSimPrimaryGeneratorAction(){
   //UI->ApplyCommand("/control/execute setsource.mac");
 }
 
-TPSimPrimaryGeneratorAction::~TPSimPrimaryGeneratorAction(){
+ENLTPSimPrimaryGeneratorAction::~ENLTPSimPrimaryGeneratorAction(){
   //delete particleGun;
   delete particleSource;
 }
 
-void TPSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
+void ENLTPSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
 
   //particleGun->GeneratePrimaryVertex(anEvent);
   particleSource->GeneratePrimaryVertex(anEvent);
 
   //  always require these two lines
   //G4EventManager *evtman = G4EventManager::GetEventManager();
-  //TPSimEventAction *evtac = (TPSimEventAction*)evtman->GetUserEventAction();
+  //ENLTPSimEventAction *evtac = (ENLTPSimEventAction*)evtman->GetUserEventAction();
 
   //evtac->SetIncidentE(particleGun->GetParticleEnergy());
   //evtac->SetIncidentE(particleSource->GetParticleEnergy());

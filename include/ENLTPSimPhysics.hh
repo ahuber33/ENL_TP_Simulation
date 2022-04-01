@@ -1,19 +1,19 @@
-/// TPSimPhysics.hh
+/// ENLTPSimPhysics.hh
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#ifndef  TPSimPhysics_h
-#define   TPSimPhysics_h  1
+#ifndef  ENLTPSimPhysics_h
+#define   ENLTPSimPhysics_h  1
 
 //#include "G4VUserPhysicsList.hh"
 #include "G4VModularPhysicsList.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
 #include "G4DecayPhysics.hh"
 #include "G4RadioactiveDecayPhysics.hh"
-class  TPSimPhysics:  public G4VModularPhysicsList
+class  ENLTPSimPhysics:  public G4VModularPhysicsList
 {      public:
-  TPSimPhysics();
-  virtual ~TPSimPhysics();
+  ENLTPSimPhysics();
+  virtual ~ENLTPSimPhysics();
 
 protected:
   virtual void ConstructParticle();

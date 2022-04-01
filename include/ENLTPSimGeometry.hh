@@ -1,14 +1,14 @@
-/// TPSimGeometry.hh
+/// ENLTPSimGeometry.hh
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#ifndef TPSimGeometry_h
-#define TPSimGeometry_h  1
+#ifndef ENLTPSimGeometry_h
+#define ENLTPSimGeometry_h  1
 
 #include "G4MaterialPropertiesTable.hh"
 
 class Geometry;
-class TPSimMaterials;
+class ENLTPSimMaterials;
 class G4VPhysicalVolume;
 
 #include "G4VUserDetectorConstruction.hh"
@@ -17,11 +17,11 @@ class G4VPhysicalVolume;
 #include "G4LogicalSkinSurface.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
 
-class  TPSimGeometry:  public G4VUserDetectorConstruction
+class  ENLTPSimGeometry:  public G4VUserDetectorConstruction
 {
 public:
-  TPSimGeometry();
-  ~TPSimGeometry();
+  ENLTPSimGeometry();
+  ~ENLTPSimGeometry();
 
 public:
   G4VPhysicalVolume* Construct();
@@ -32,7 +32,7 @@ private:
   static const G4String path;
   // Classes for building various components
   //     LogicalHolder *holder;
-  TPSimMaterials *scintProp;
+  ENLTPSimMaterials *scintProp;
   Geometry *theScint;
   G4Material *Vacuum;
   G4Material *VacuumWorld;
@@ -75,6 +75,7 @@ private:
   G4LogicalVolume *LogicalMFPlates;
   G4LogicalVolume *LogicalVolumeMFPlates;
   G4LogicalVolume *LogicalPinhole;
+  G4LogicalVolume *LogicalDetector;
 
 
   // Physical volumes
@@ -95,6 +96,7 @@ private:
   G4VPhysicalVolume *PhysicalMFPlates;
   G4VPhysicalVolume *PhysicalVolumeMFPlates;
   G4VPhysicalVolume *PhysicalPinhole;
+  G4VPhysicalVolume *PhysicalDetector;
 
   // Optical surfaces
   G4OpticalSurface *OpticalTeflon;
@@ -138,7 +140,7 @@ private:
   G4double Z_Position_EFPlates;
   G4double Z_Position_ZnS;
   G4double Z_Position_Sc;
-  G4double Z_Position_Photocathode; 
+  G4double Z_Position_Photocathode;
   // wrapping
   G4double TeflonGap;
   G4double TeflonThickness;
