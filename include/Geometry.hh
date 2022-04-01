@@ -13,7 +13,7 @@
 #include "G4LogicalSkinSurface.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
 
-class TPSimMaterials;
+class ENLTPSimMaterials;
 class Geometry
 
 {
@@ -75,7 +75,7 @@ private:
 
 
   Geometry *theScint;
-  TPSimMaterials* scintProp;
+  ENLTPSimMaterials* scintProp;
 
   static const G4String path_bin;
 

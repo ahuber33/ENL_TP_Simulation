@@ -2,7 +2,7 @@
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#include "TPSimMaterials.hh"
+#include "ENLTPSimMaterials.hh"
 #include "Geometry.hh"
 #include "G4Material.hh"
 #include "G4MaterialTable.hh"

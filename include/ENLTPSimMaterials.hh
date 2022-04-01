@@ -1,11 +1,11 @@
-/// TPSimMaterials.hh
+/// ENLTPSimMaterials.hh
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
 // This class is used to create a plastic scintillator.
 
-#ifndef TPSimMaterials_h
-#define TPSimMaterials_h
+#ifndef ENLTPSimMaterials_h
+#define ENLTPSimMaterials_h
 
 
 #include "G4MaterialPropertiesTable.hh"
@@ -16,12 +16,12 @@
 
 class G4Material;
 
-class TPSimMaterials
+class ENLTPSimMaterials
 {
 public:
 
-  TPSimMaterials(G4String prop_buildfile);
-  ~TPSimMaterials();
+  ENLTPSimMaterials(G4String prop_buildfile);
+  ~ENLTPSimMaterials();
   void Construct();
 
 public:

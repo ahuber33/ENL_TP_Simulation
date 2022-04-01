@@ -1,26 +1,26 @@
-/// TPSimRunAction.hh
+/// ENLTPSimRunAction.hh
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#ifndef TPSimRunAction_h
-#define TPSimRunAction_h 1
+#ifndef ENLTPSimRunAction_h
+#define ENLTPSimRunAction_h 1
 
 #include "G4UserRunAction.hh"
 #include "globals.hh"
 #include "TROOT.h"
 #include "TTree.h"
-#include "TPSimEventAction.hh"
+#include "ENLTPSimEventAction.hh"
 #include <TFile.h>
 #include <vector>
 
 class G4Run;
 
-class TPSimRunAction : public G4UserRunAction
+class ENLTPSimRunAction : public G4UserRunAction
 {
 
 public:
-  TPSimRunAction(char*);
-  ~TPSimRunAction();
+  ENLTPSimRunAction(char*);
+  ~ENLTPSimRunAction();
 
 public:
   void BeginOfRunAction(const G4Run*);

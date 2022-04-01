@@ -1,9 +1,9 @@
-/// TPSimSteppingAction.cc
+/// ENLTPSimSteppingAction.cc
 //// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 //// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
-#ifndef TPSimSteppingAction_h
-#define TPSimSteppingAction_h
+#ifndef ENLTPSimSteppingAction_h
+#define ENLTPSimSteppingAction_h
 
 #include "G4UserSteppingAction.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
@@ -17,11 +17,11 @@ class G4Step;
 class G4SteppingManager;
 class PMT;
 
-class TPSimSteppingAction : public G4UserSteppingAction
+class ENLTPSimSteppingAction : public G4UserSteppingAction
 {
 public:
-  TPSimSteppingAction();
-  ~TPSimSteppingAction();
+  ENLTPSimSteppingAction();
+  ~ENLTPSimSteppingAction();
 public:
   void UserSteppingAction(const G4Step*);
   int Boundary;

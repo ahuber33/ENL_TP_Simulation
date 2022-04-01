@@ -1,4 +1,4 @@
-/// TPSim.cc
+/// ENLTPSim.cc
 /// Auteur: Arnaud HUBER for ENL group <huber@cenbg.in2p3.fr>
 /// Copyright: 2022 (C) Projet RATP - ENL [LP2IB] - CELIA
 
@@ -11,16 +11,16 @@
 #include "time.h"
 #include "G4Timer.hh"
 #include "G4UIterminal.hh"
-#include "TPSimSteppingAction.hh"
+#include "ENLTPSimSteppingAction.hh"
 #include "G4RunManager.hh"
 #include "G4UImanager.hh"
 //#include "G4UIGAG.hh"
-  #include "TPSimGeometry.hh"
-  #include "TPSimPhysics.hh"
-  #include "TPSimPrimaryGeneratorAction.hh"
-#include "TPSimRunAction.hh"
-#include "TPSimEventAction.hh"
-#include "TPSimTrackingAction.hh"
+  #include "ENLTPSimGeometry.hh"
+  #include "ENLTPSimPhysics.hh"
+  #include "ENLTPSimPrimaryGeneratorAction.hh"
+#include "ENLTPSimRunAction.hh"
+#include "ENLTPSimEventAction.hh"
+#include "ENLTPSimTrackingAction.hh"
 //
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
@@ -28,7 +28,7 @@
 
 
 // #ifdef G4VIS_USE
-// #include "TPSimVisManager.hh"
+// #include "ENLTPSimVisManager.hh"
  //#endif
 
 int main(int argc,char** argv){
@@ -46,36 +46,36 @@ int main(int argc,char** argv){
 
 
   // set mandatory initialization classes
-  TPSimGeometry* OptGeom = new TPSimGeometry;
+  ENLTPSimGeometry* OptGeom = new ENLTPSimGeometry;
 
-  G4cout<<"Geometry given to TPSim.cc"<<G4endl;
+  G4cout<<"Geometry given to ENLTPSim.cc"<<G4endl;
 
   // initialize the geometry
   runManager->SetUserInitialization(OptGeom);
-  G4cout<<"Geometry set in TPSim.cc given to Runman"<<G4endl;
+  G4cout<<"Geometry set in ENLTPSim.cc given to Runman"<<G4endl;
 
   // initialize the physics
-  runManager->SetUserInitialization(new TPSimPhysics);
+  runManager->SetUserInitialization(new ENLTPSimPhysics);
 
 // #ifdef G4VIS_USE
 //   // visualization manager
-//   G4VisManager* visManager = new TPSimVisManager;
+//   G4VisManager* visManager = new ENLTPSimVisManager;
 //   visManager->Initialize();
 // #endif
 
   // set mandatory user action class
-  runManager->SetUserAction(new TPSimPrimaryGeneratorAction);
+  runManager->SetUserAction(new ENLTPSimPrimaryGeneratorAction);
 
 
   // set Run Event and Stepping action classes
-  runManager->SetUserAction(new TPSimRunAction(suff));
+  runManager->SetUserAction(new ENLTPSimRunAction(suff));
   G4cout<<"Initialized new Run Action"<<G4endl;
 
-  runManager->SetUserAction(new TPSimEventAction(suff));
+  runManager->SetUserAction(new ENLTPSimEventAction(suff));
   G4cout<<"Initialized new EventAction"<<G4endl;
-  runManager->SetUserAction(new TPSimSteppingAction);
+  runManager->SetUserAction(new ENLTPSimSteppingAction);
   G4cout<<"Initialized new SteppingAction"<<G4endl;
-  runManager->SetUserAction(new TPSimTrackingAction);
+  runManager->SetUserAction(new ENLTPSimTrackingAction);
   G4cout<<"Initialized new Tracking Action"<<G4endl;
 
 
