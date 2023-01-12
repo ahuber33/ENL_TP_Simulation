@@ -26,6 +26,7 @@
 #include "G4IonConstructor.hh"
 #include "G4EmStandardPhysics.hh"
 #include "G4EmStandardPhysics_option3.hh"
+#include "G4EmLivermorePhysics.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4Gamma.hh"
 #include "G4Electron.hh"
@@ -51,6 +52,7 @@
 #include "G4BraggIonModel.hh"
 #include "G4BraggModel.hh"
 #include "G4BetheBlochModel.hh"
+#include "G4FastSimulationManagerProcess.hh"
 
 
 using namespace CLHEP;
@@ -61,7 +63,7 @@ ENLTPSimPhysics::ENLTPSimPhysics():  G4VModularPhysicsList()
 {
   // Here used the default cut value you have typed in
   //defaultCutValue = 0.001*mm; //0.001
-  defaultCutValue = 0.1*mm; //0.001
+  defaultCutValue = 1*mm; //0.001
   //was 0.5*mm
 
   SetVerboseLevel(1);
@@ -73,7 +75,9 @@ ENLTPSimPhysics::ENLTPSimPhysics():  G4VModularPhysicsList()
   raddecayList = new G4RadioactiveDecayPhysics();
 
   // EM physics
-  emPhysicsList = new G4EmStandardPhysics_option3();
+  //emPhysicsList = new G4EmStandardPhysics_option3();
+  emPhysicsList = new G4EmLivermorePhysics();
+
   //emPhysicsList = new G4EmStandardPhysics();
 
 

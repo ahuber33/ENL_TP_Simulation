@@ -58,6 +58,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include
 set(PROJECT_SRC
   ${CMAKE_CURRENT_SOURCE_DIR}/src/ENLTPSimPhysics.cc
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Geometry.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/EMField.cc
 	${CMAKE_CURRENT_SOURCE_DIR}/src/ENLTPSimEventAction.cc
 	${CMAKE_CURRENT_SOURCE_DIR}/src/ENLTPSimTrackingAction.cc
 	${CMAKE_CURRENT_SOURCE_DIR}/src/ENLTPSimVisManager.cc
@@ -72,6 +73,8 @@ set(PROJECT_SRC
 set(PROJECT_HEADER
   ${CMAKE_CURRENT_SOURCE_DIR}/include/ENLTPSimPhysics.hh
 	${CMAKE_CURRENT_SOURCE_DIR}/include/Geometry.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/EMField.hh
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/BMap.hh
 	${CMAKE_CURRENT_SOURCE_DIR}/include/ENLTPSimEventAction.hh
 	${CMAKE_CURRENT_SOURCE_DIR}/include/ENLTPSimTrackingAction.hh
 	${CMAKE_CURRENT_SOURCE_DIR}/include/ENLTPSimVisManager.hh

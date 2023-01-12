@@ -35,9 +35,19 @@ struct RunTallyOptical {
   int    Failed;
   //int    WLS;
   int    Detected;
-  std::vector<float>PositionX;
-  std::vector<float>PositionY;
-  std::vector<float>PositionZ;
+  std::vector<float>ExitLightPositionX;
+  std::vector<float>ExitLightPositionY;
+  std::vector<float>ExitLightPositionZ;
+  std::vector<float>LensPositionX;
+  std::vector<float>LensPositionY;
+  std::vector<float>LensPositionZ;
+  std::vector<float>DetectorPositionX;
+  std::vector<float>DetectorPositionY;
+  std::vector<float>DetectorPositionZ;
+  std::vector<float>PhotonTrajectoryX;
+  std::vector<float>PhotonTrajectoryY;
+  std::vector<float>PhotonTrajectoryZ;
+  std::vector<int>PhotonTrajectoryNStep;
   std::vector<float>MomentumX;
   std::vector<float>MomentumY;
   std::vector<float>MomentumZ;
@@ -48,6 +58,9 @@ struct RunTallyOptical {
   std::vector<float>Total_Reflections;
   std::vector<float>Wrap_Reflections;
   std::vector<float>TotalLength;
+  std::vector<float>Angle_creation;
+  std::vector<float>Angle_detection;
+  std::vector<int>FinalState;
 
   inline int operator ==(const RunTallyOptical& right) const
   {return (this==&right);}
@@ -102,9 +115,20 @@ public:
   int GetEscaped(){return StatsOptical.Escaped;}
   void CountFailed(){StatsOptical.Failed++;}
   int GetFailed(){return StatsOptical.Failed;}
-  void FillPhotonPositionX(G4float e){StatsOptical.PositionX.push_back(e);}
-  void FillPhotonPositionY(G4float e){StatsOptical.PositionY.push_back(e);}
-  void FillPhotonPositionZ(G4float e){StatsOptical.PositionZ.push_back(e);}
+  void FillPhotonExitLightPositionX(G4float e){StatsOptical.ExitLightPositionX.push_back(e);}
+  void FillPhotonExitLightPositionY(G4float e){StatsOptical.ExitLightPositionY.push_back(e);}
+  void FillPhotonExitLightPositionZ(G4float e){StatsOptical.ExitLightPositionZ.push_back(e);}
+  void FillPhotonLensPositionX(G4float e){StatsOptical.LensPositionX.push_back(e);}
+  void FillPhotonLensPositionY(G4float e){StatsOptical.LensPositionY.push_back(e);}
+  void FillPhotonLensPositionZ(G4float e){StatsOptical.LensPositionZ.push_back(e);}
+  void FillPhotonDetectorPositionX(G4float e){StatsOptical.DetectorPositionX.push_back(e);}
+  void FillPhotonDetectorPositionY(G4float e){StatsOptical.DetectorPositionY.push_back(e);}
+  void FillPhotonDetectorPositionZ(G4float e){StatsOptical.DetectorPositionZ.push_back(e);}
+  void FillPhotonTrajectoryX(G4float e){StatsOptical.PhotonTrajectoryX.push_back(e);}
+  void FillPhotonTrajectoryY(G4float e){StatsOptical.PhotonTrajectoryY.push_back(e);}
+  void FillPhotonTrajectoryZ(G4float e){StatsOptical.PhotonTrajectoryZ.push_back(e);}
+  void FillPhotonTrajectoryNStep(G4int e){StatsOptical.PhotonTrajectoryNStep.push_back(e);}
+  void FillPhotonFinalState(G4int e){StatsOptical.FinalState.push_back(e);}
   void FillPhotonMomentumX(G4float e){StatsOptical.MomentumX.push_back(e);}
   void FillPhotonMomentumY(G4float e){StatsOptical.MomentumY.push_back(e);}
   void FillPhotonMomentumZ(G4float e){StatsOptical.MomentumZ.push_back(e);}
@@ -115,6 +139,19 @@ public:
   void FillTotalReflections(G4float e){StatsOptical.Total_Reflections.push_back(e);}
   void FillWrapReflecions(G4float e){StatsOptical.Wrap_Reflections.push_back(e);}
   void FillPhotonTotalLength(G4float e){StatsOptical.TotalLength.push_back(e);}
+  void FillFiberAngleCreation(G4float e){StatsOptical.Angle_creation.push_back(e);}
+  void SetPhotonCreationAngle(G4float e){Photon_creation_angle=e;}
+  float GetPhotonCreationAngle(){return Photon_creation_angle;}
+  void FillFiberAngleDetection(G4float e){StatsOptical.Angle_detection.push_back(e);}
+  void SetTrackLengthFastSimulated(G4float a){TrackLengthFastSimulated=a;}
+  float GetTrackLengthFastSimulated(){return TrackLengthFastSimulated;}
+  void AddPhotonTrajectoryNStep(){PhotonTrajectoryNStep++;}
+  void ClearPhotonTrajectoryNStep(){PhotonTrajectoryNStep=0;}
+  int GetPhotonTrajectoryNStep(){return PhotonTrajectoryNStep;}
+  int GetSizePhotonTrajectoryNStep(){return StatsOptical.PhotonTrajectoryNStep.size();}
+  int GetSizePhotonTrajectoryX(){return StatsOptical.PhotonTrajectoryX.size();}
+  void SetAirIndex(G4float a){Air_Index = a;}
+  float GetAirIndex(){return Air_Index;}
 
   //Functions for TP Tree
   void SetParticuleID(G4double a){StatsTP.ParticuleID =a;}
@@ -146,7 +183,10 @@ private:
   RunTallyOptical StatsOptical;
   RunTallyTP StatsTP;
   G4String suffixe;
-
+  float TrackLengthFastSimulated;
+  int PhotonTrajectoryNStep;
+  float Photon_creation_angle;
+  float Air_Index;
 
 
 

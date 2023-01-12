@@ -12,6 +12,15 @@
 # - TP Tree contains datas about Energy of the particles (start and deposited) and position of interaction on the detector. Anoterh Tree optical is available if the Optical part is activated.
 # - DO NOT HESITATE TO REPORT BUGS OR ANY IDEAS THAT WILL IMPROVE THE SIMULATION !!!!
 
-#commit #1 le 23/02/2022 [TPSim.0.0.0]:
+#commit #1 le 23/02/2022 [ENLTPSim.0.0.0]:
 #-Code de base provenant de la version TPSim.0.5.0 avec quelques parties de code nettoyés pour en simplifier la lecture
 #-Code Deviation.cc utilisé pour comparer deviation particules avec GEANT4 et par calcul.
+
+#commit #2 le 12/01/2023 [ENLTPSim.0.0.1]
+# - code ajouté afin de pouvoir tester la prise en compte de lentilles dans le suivi des photons !!!!
+# - ATTENTION : PAS DE VALIDATION SUR CETTE PARTIE !!!!!!
+# - Code ajouté afin de pouvoir prendre en compte une carte de champ réaliste (a permis la comparaison entre différents programme de suivi de particules dans un champ)
+# - Outil ajouté permettant de créer le fichier ROOT correspondant à partir de données
+# - ATTENTION : PAS DE VALIDATION SUR CETTE PARTIE !!!!!!
+# - Incorporation d'une géométrie basique de la TP Pierre afin d'étudier un possible impact d'un déplacement de TCC par rapport à la pinhole de Pierre.
+# - ATTENTION EGALEMENT CAR CELA N A PAS ETE FINALISE. LA GEOMETRIE NECESSITE D ETRE REVU AVEC LE GROUPE APPAREMMENT !!!!

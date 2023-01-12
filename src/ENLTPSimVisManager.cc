@@ -38,7 +38,7 @@
 
 ENLTPSimVisManager::ENLTPSimVisManager () {}
 
-void ENLTPSimVisManager::RegisterGraphicsSystems () {
+void TPSimVisManager::RegisterGraphicsSystems () {
 
   //  RegisterGraphicsSystem (new G4HepRepFile);
   //  RegisterGraphicsSystem (new G4HepRep);

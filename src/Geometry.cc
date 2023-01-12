@@ -14,15 +14,7 @@
 #include "G4UnionSolid.hh"
 #include <fstream>
 #include <iostream>
-#include "G4Box.hh"
-#include "G4Tubs.hh"
-#include "G4Cons.hh"
-#include "G4Polyhedra.hh"
-#include <G4Polycone.hh>
-#include "G4Sphere.hh"
-#include "G4Trap.hh"
-#include "G4Trd.hh"
-#include "G4SubtractionSolid.hh"
+
 #include "G4PVPlacement.hh"
 #include "G4UnitsTable.hh"
 #include <math.h>
@@ -68,6 +60,34 @@ Geometry::Geometry(G4String buildfile){
       else if(variable == "ZnSThickness"){
         config >> value >> unit;
         ZnSThickness = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "ZnSLGThickness"){
+        config >> value >> unit;
+        ZnSLGThickness = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "DetectorLength"){
+        config >> value >> unit;
+        DetectorLength = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "DetectorWidth"){
+        config >> value >> unit;
+        DetectorWidth = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "DetectorThickness"){
+        config >> value >> unit;
+        DetectorThickness = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "LensThickness"){
+        config >> value >> unit;
+        LensThickness = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "LensTranslation"){
+        config >> value >> unit;
+        LensTranslation = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "DetectorTranslation"){
+        config >> value >> unit;
+        DetectorTranslation = value*G4UnitDefinition::GetValueOf(unit);
       }
       if(variable == "TeflonThickness"){
         config >> value >> unit;
@@ -177,6 +197,12 @@ Geometry::Geometry(G4String buildfile){
   << "\n ScintillatorLength = " << ScintillatorLength
   << "\n ScintillatorThickness = " << ScintillatorThickness
   << "\n ZnSThickness = " << ZnSThickness
+  << "\n DetectorLength = " << DetectorLength
+  << "\n DetectorWidth = " << DetectorWidth
+  << "\n DetectorThickness = " << DetectorThickness
+  << "\n LensThickness = " << LensThickness
+  << "\n DetectorTranslation = " << DetectorTranslation
+  << "\n LensTranslation = " << LensTranslation
   << "\n Teflon thickness = " << TeflonThickness
   << "\n Air gap Teflon = " << AirGapTeflon
   << "\n Mylar thickness = " << MylarThickness
@@ -210,16 +236,17 @@ Geometry::~Geometry(){
   if(clear) { delete clear; clear = 0; }
 }
 
-
 G4LogicalVolume *Geometry::GetScTest(){
 
   Material = scintProp->GetMaterial("scintillator");
+  //Material = scintProp->GetMaterial("NoWaSH");
   //Material = scintProp->GetMaterial("ZnS");
 
   //scintillator = scintProp->GetMaterial("Alu");
 
   G4Box *Box = new G4Box   ("Box",             //its name
-  ScintillatorLength/2, ScintillatorLength/2, ScintillatorThickness/2);    //its size
+  //ScintillatorLength/2, ScintillatorLength/2, ScintillatorThickness/2);    //its size
+  ScintillatorLength/2, 60*mm/2, ScintillatorThickness/2);    //its size
 
   LogicalVolume = new G4LogicalVolume(Box, Material, "Sc_Test",0,0,0);
 
@@ -319,35 +346,8 @@ G4LogicalVolume *Geometry::GetPinhole(){
 
   G4Tubs *Tubs = new G4Tubs   ("Tubs",             //its name
   //0., (38.1/2)*mm, (38.1/2)*mm, 0, 360*deg);    //its size
-  Pinhole_radius_int, Pinhole_radius_ext, Pinhole_thickness, 0, 360*deg);    //its size
+  Pinhole_radius_int, Pinhole_radius_ext, Pinhole_thickness/2, 0, 360*deg);    //its size
   LogicalVolume = new G4LogicalVolume(Tubs, Material, "Pinhole",0,0,0);
-
-  return LogicalVolume;
-}
-
-
-
-
-G4LogicalVolume *Geometry::GetLaBr3(){
-
-  Material = scintProp->GetMaterial("LaBr3");
-
-  G4Tubs *Tubs = new G4Tubs   ("Tubs",             //its name
-  //0., (38.1/2)*mm, (38.1/2)*mm, 0, 360*deg);    //its size
-  0., (38.1/2)*mm, (38.1/2)*mm, 0, 360*deg);    //its size
-  LogicalVolume = new G4LogicalVolume(Tubs, Material, "LaBr3",0,0,0);
-
-  return LogicalVolume;
-}
-
-
-G4LogicalVolume *Geometry::GetZnS(){
-
-  Material = scintProp->GetMaterial("ZnS");
-
-  G4Box *Box = new G4Box   ("Box",             //its name
-  ScintillatorLength/2, ScintillatorLength/2, ZnSThickness/2);    //its size
-  LogicalVolume = new G4LogicalVolume(Box, Material, "ZnS",0,0,0);
 
   return LogicalVolume;
 }
@@ -355,11 +355,34 @@ G4LogicalVolume *Geometry::GetZnS(){
 
 G4LogicalVolume *Geometry::GetPhotocathode(){
   // Materials properties for PMT
-  Material = scintProp->GetMaterial("Vacuum");
+  //Material = scintProp->GetMaterial("Vacuum");
+  Material = scintProp->GetMaterial("Silicium");
 
   G4Box *Box = new G4Box   ("Box",             //its name
-  ScintillatorLength/2, ScintillatorLength/2, 0.1/2);    //its size
+  //ScintillatorLength/2, ScintillatorLength/2, DetectorThickness/2);    //its size
+  //(Fiber_number_per_line*Fiber_width + (Fiber_number_per_line+1)*Fiber_space)/2, (Fiber_number_per_line*Fiber_width + (Fiber_number_per_line+1)*Fiber_space)/2, DetectorThickness/2);    //its size
+  DetectorLength/2, DetectorWidth/2, DetectorThickness/2);    //its size
+
   LogicalVolume = new G4LogicalVolume(Box, Material, "Photocathode",0,0,0);
+
+  return LogicalVolume;
+}
+
+G4LogicalVolume *Geometry::GetLens(){
+
+  Material = scintProp->GetMaterial("lens_glass");
+
+#ifndef disable_gdm
+  //G4NistManager* nist = G4NistManager::Instance();
+  G4GDMLParser* parser = new G4GDMLParser();
+  //Create Tesselated volume of "Bouchon"
+  parser->Clear();
+  parser->Read("../gdml_models/LA1238-Step.gdml", false);
+  LogicalVolume = parser->GetVolume("LA1238-Step");
+  LogicalVolume->SetMaterial(Material);
+#else
+  //
+#endif
 
   return LogicalVolume;
 }

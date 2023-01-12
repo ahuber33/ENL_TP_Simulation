@@ -44,6 +44,7 @@ private:
   G4MaterialPropertiesTable *PMT_MPT;
   double Length_Track;
   double Total_Length_Track;
+  G4double angle_azimutale;
 
 
 };

@@ -59,6 +59,7 @@ private:
   G4Element* elementS;
 
   G4Material *SiO2;
+  G4Material *Silicium;
   G4Material *B2O3;
   G4Material *Na2O;
   G4Material *Al2O3;
@@ -92,10 +93,8 @@ private:
   G4Material *mylar;
   G4Material *grease;
   G4Material *cargille;
-  G4Material *PMMA;
   G4Material *Alu;
-  G4Material *RTV;
-  G4Material *ZnS;
+  G4Material *lens_glass;
 
   G4MaterialPropertiesTable *bs_glassMPT;
   G4MaterialPropertiesTable *vacMPT;
@@ -104,23 +103,11 @@ private:
   G4MaterialPropertiesTable *plasticMPT;
   G4MaterialPropertiesTable *greaseMPT;
   G4MaterialPropertiesTable *cargilleMPT;
-  G4MaterialPropertiesTable *LaBr3MPT;
-  G4MaterialPropertiesTable *PMMAMPT;
-  G4MaterialPropertiesTable *ZnSMPT;
+  G4MaterialPropertiesTable *lens_glassMPT;
 
+  G4OpticalSurface* PMMAOpSurface;
 
-  G4double scintAbsorbconst;
-  G4double scintIndexconst;
-  G4double scalingfactor_low;
-  G4double scalingfactor_high;
-  G4double pop_scalingfactor_low;
-  G4double pop_scalingfactor_high;
   G4double lightyield;
-  G4double lightyieldZnS;
-  G4double paint_ref_coeff;
-  G4double mylar_ref_coeff;
-  G4double pWavelength;
-  G4double ratio;
 
 
 };
